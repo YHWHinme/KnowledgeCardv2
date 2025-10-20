@@ -3,7 +3,14 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: '#1E1E1E',
+        card: '#2A2A2A',
+        text: '#EAEAEA',
+        accent: '#6C63FF'
+      }
+    },
   },
   variants: {
     extend: {},
