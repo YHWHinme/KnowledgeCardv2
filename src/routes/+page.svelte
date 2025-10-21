@@ -2,6 +2,4 @@
 	// Importing components
 </script>
 
-<main class="bg-background text-accent">
-	Hello
-</main>
+<main class="flex items-center justify-center">Hello</main>
