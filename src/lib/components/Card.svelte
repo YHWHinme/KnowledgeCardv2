@@ -3,7 +3,8 @@
 	export let func: string;
 </script>
 
-<div class="card w-80 bg-base-100 shadow-lg">
+<!-- TODO: ENsure you use the custom colours here for text and background -->
+<div class="card text-black w-80 bg-base-100 shadow-lg">
 	<div class="card-body bg-surface text-text rounded-xl p-4">
 		<!-- Compact title -->
 		<h2 class="card-title text-lg font-semibold text-center mb-2">{task_title}</h2>
