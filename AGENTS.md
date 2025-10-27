@@ -1,42 +1,43 @@
 # Agent Guidelines for KnowledgeMapper
 
 ## Tech Stack
-SvelteKit frontend + Tauri Rust backend + SQLite database
+SvelteKit + Tauri + SQLite
 
-## Build Commands
-- **Dev server**: `npm run dev`
-- **Frontend build**: `npm run build`
-- **Type check**: `npm run check` (strict mode enabled)
-- **Tauri dev**: `npm run tauri dev`
-- **Tauri build**: `npm run tauri build`
+## Commands
+- **Dev**: `npm run dev` (frontend) / `npm run tauri dev` (full app)
+- **Build**: `npm run build` (frontend) / `npm run tauri build` (full app)
+- **Type check**: `npm run check` (strict mode - no tests configured)
+- **Lint**: `npm run check` (includes type checking)
+- **Rust**: `cargo check` / `cargo build` (in src-tauri/)
 
-## Test Commands
-- **Validation**: `npm run check` (TypeScript strict checks)
-- **No unit tests configured** - use type checking for validation
-
-## Code Style Guidelines
+## Code Style
 
 ### TypeScript/JavaScript
-- **Strict mode**: All code must pass TypeScript strict checks
-- **Imports**: ES6 imports, external libs first, then internal ($lib/)
-- **Naming**: camelCase vars/functions, PascalCase components/types
-- **Types**: Explicit types always, prefer interfaces for objects
+- Strict mode enabled, explicit types always, no any types
+- Imports: ES6, external libs first, then $lib/, absolute paths
+- Naming: camelCase vars/functions, PascalCase components/types/interfaces
+- Error handling: try/catch with specific error types, no console.log for errors
+- Async: async/await preferred, Promise<T> return types
 
 ### Svelte
-- **Structure**: Script → template → styles
-- **Props**: TypeScript interfaces required
-- **Styling**: Tailwind CSS classes only
-- **Events**: Svelte event dispatcher for communication
+- Structure: script → template → styles
+- Props: TypeScript interfaces required, export let with types
+- Styling: Tailwind CSS only, custom colors from tailwind.config.js
+- Responsive: Tailwind prefixes (sm:, md:, lg:) for mobile-first
+- Events: Svelte event dispatcher, no direct DOM manipulation
 
 ### Rust (Tauri)
-- **Error handling**: Result types with ? operator
-- **Naming**: snake_case functions/vars, PascalCase structs/enums
-- **Serialization**: Use serde with derive macros
+- Error handling: Result<T, E> with ? operator, custom error types
+- Naming: snake_case functions/vars, PascalCase structs/enums
+- Serialization: serde with derive macros, camelCase JSON fields
+- Memory: explicit ownership, avoid unwrap() in production
 
 ### Database
-- **Schema**: Descriptive names, CONSTRAINT foreign keys
-- **Types**: TEXT, INTEGER, BOOLEAN SQLite types
+- Schema: descriptive names, CONSTRAINT foreign keys, AUTOINCREMENT IDs
+- Types: TEXT, INTEGER, BOOLEAN, NOT NULL constraints
+- Queries: parameterized to prevent SQL injection
 
 ### General
-- **Security**: Never log sensitive data, validate inputs
-- **Commits**: Conventional commit format
+- Security: never log sensitive data, validate all inputs, no hardcoded secrets
+- Formatting: consistent indentation, trailing commas, single quotes for strings
+- Commits: conventional format (feat:, fix:, docs:, etc.)

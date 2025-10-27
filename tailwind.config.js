@@ -1,91 +1,75 @@
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   mode: "jit",
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
-      fontFamily: {
-        display: ["Orbitron", "sans-serif"], // for headings
-        sans: ["Inter", "sans-serif"], // for body
-      },
       colors: {
-        // NOTE: Global
-        base: {
-          bg: "#EAF4FA", // app background
-          surface: "#F7FBFD", // card/surface panels
-          border: "#C9E1ED", // subtle outlines
-          text: "#0E2433", // main text
-          muted: "#8FAABF", // secondary text
+        // NOTE: App
+        app: {
+          background: "#0B0E13",
+          secondary: "#121721",
+          accent: {
+            primary: "#38BDF8",
+            secondary: "#2C95C9",
+          },
+          text: {
+            primary: "#DCE8F5",
+            secondary: "#8BA0B3",
+          },
         },
-
-        accent: {
-          DEFAULT: "#63B3ED", // light sky blue
-          strong: "#3196E2", // hover / active
-          glow: "rgba(99,179,237,0.25)", // soft UI glow
-        },
-
-        state: {
-          success: "#4FD1C5",
-          error: "#E53E3E",
-          warning: "#ECC94B",
-        },
-
-        // NOTE: Regional Colours
-        main: {
-          bg: "#EAF4FA",
-          text: "#0E2433",
-          border: "#C9E1ED",
-        },
+        // NOTE: Sidebar
         sidebar: {
-          bg: "#D6EAF5",
-          gradient: "linear-gradient(180deg, #D6EAF5 0%, #C2E0EF 100%)",
-          active: "#63B3ED",
-          text: "#0E2433",
-          hover: "#3196E2",
-          divider: "#B8D7E7",
+          background: "#151B26",
+          text: {
+            primary: "#E1E9F9",
+            inactive: "#7A8CA2",
+          },
+          activeStage: "#38BDF8",
+          hoverState: "#1A212E",
         },
-        header: {
-          bg: "#F7FBFD",
-          border: "#C9E1ED",
-          text: "#0E2433",
-          icon: "#3196E2",
+        // NOTE: cardHouse
+        cardHouse: {
+          background:
+            "radial-gradient(125% 125% at 50% 10%, #0E1219 0%, #111722 100%)",
+          secondary: "hsla(219, 20%, 10%, 0.3)",
+          scrollbar: "#2C95C9",
+          shadowColor: "rgba(56, 189, 248, 0.2)",
         },
-        task: {
-          bg: "#FFFFFF",
-          completed: "#8FAABF",
-          border: "#C9E1ED",
-          hover: "#63B3ED",
-          active: "#3196E2",
+        // NOTE: KnowledgeCard
+        knlCard: {
+          background: "#1C222E",
+          border: "#293444",
+          text: {
+            function: "#38BDF8",
+            markdown: "#DDEAF7",
+            header: "#56C8F9",
+            summary: "#7C8FA5",
+          },
+          button: "#38BDF8",
+          glowColor: "rgba(56, 189, 248, 0.15)",
+          linearGradient: "linear-gradient(90deg, #38BDF8, #5ED4FF)",
         },
+        // NOTE: CardModal
         modal: {
-          bg: "rgba(247,251,253,0.95)",
-          border: "#C9E1ED",
-          shadow: "rgba(49,150,226,0.2)",
+          backdrop: "rgba(10, 15, 25, 0.85)",
+          modal: {
+            body: "#161D28",
+            outline: "#38BDF8",
+          },
+          buttons: {
+            background: "#38BDF8",
+            text: "#0B0E13",
+            hovery: "#5ED4FF",
+          },
+          inputs: {
+            background: "#0E141F",
+            border: "#293444",
+            outline: "#38BDF8",
+          },
         },
-      },
-
-      // NOTE: Spacing and Radii
-      spacing: {
-        0.5: "2px",
-        1: "4px",
-        2: "8px",
-        3: "12px",
-        4: "16px",
-        6: "24px",
-        8: "32px",
-      },
-      borderRadius: {
-        xl: "1rem",
-        "2xl": "1.5rem",
-      },
-      boxShadow: {
-        "sci-glow": "0 0 8px rgba(99,179,237,0.25)",
-        modal: "0 0 16px rgba(49,150,226,0.2)",
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };
