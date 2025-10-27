@@ -1,7 +1,7 @@
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   mode: "jit",
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
       fontFamily: {
@@ -25,13 +25,15 @@ module.exports = {
             secondary: "#8BA0B3",
           },
         },
+        // NOTE: Sidebar
         sidebar: {
-          bg: "#D6EAF5",
-          gradient: "linear-gradient(180deg, #D6EAF5 0%, #C2E0EF 100%)",
-          active: "#63B3ED",
-          text: "#0E2433",
-          hover: "#3196E2",
-          divider: "#B8D7E7",
+          background: "#151B26",
+          text: {
+            primary: "#E1E9F9",
+            inactive: "#7A8CA2",
+          },
+          activeStage: "#38BDF8",
+          hoverState: "#1A212E",
         },
         // NOTE: cardHouse
         cardHouse: {
@@ -50,6 +52,7 @@ module.exports = {
           },
           button: "#38BDF8",
         },
+        // NOTE: CardModal
         modal: {
           backdrop: "rgba(10, 15, 25, 0.98)",
           modal: {
@@ -68,29 +71,7 @@ module.exports = {
           },
         },
       },
-
-      // NOTE: Spacing and Radii
-      spacing: {
-        0.5: "2px",
-        1: "4px",
-        2: "8px",
-        3: "12px",
-        4: "16px",
-        6: "24px",
-        8: "32px",
-      },
-      borderRadius: {
-        xl: "1rem",
-        "2xl": "1.5rem",
-      },
-      boxShadow: {
-        "sci-glow": "0 0 8px rgba(99,179,237,0.25)",
-        modal: "0 0 16px rgba(49,150,226,0.2)",
-      },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };

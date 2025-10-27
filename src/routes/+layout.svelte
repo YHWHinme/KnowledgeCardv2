@@ -18,7 +18,7 @@
 			<Sidebar {projects} />
 		</div>
 
-		<div class="col-span-6 text-white">
+		<div class="col-span-6 text-app-text-primary">
 			{@render children()}
 		</div>
 	</div>
