@@ -1,21 +1,25 @@
 import Databse from "@tauri-apps/plugin-sql";
+import { createClient } from "@libsql/client";
 
-const db = Databse.load("sqlite:data.db");
+export const db = createClient({
+  url: Deno.env.get("VITE_TURSO_DATABASE_URl"),
+  authToken: Deno.env.get("VITE_TURSO_AUTHTOKEN"),
+});
 
 // NOTE: Projects based functions
 interface Projects {
-    id: number,
-    title: string
+  id: number;
+  title: string;
 }
 
-export async function getAllProjects():Promise<Projects[] | number> {
-    try {
-    const result = (await db).select("SELECT * FROM projects")
-    return result as Projects
-    } catch (err) {
-        console.log(err)
-        return 500
-    }
+export async function getAllProjects(): Promise<Projects[] | number> {
+  try {
+    const result = await db.execute("SELECT * FROM projects");
+    return result.rows as Projects;
+  } catch (err) {
+    console.log(err);
+    return 500;
+  }
 }
 
 // Schema
