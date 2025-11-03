@@ -15,7 +15,11 @@
 </script>
 
 <main class="flex justify-center items-center min-h-screen">
-	<CardModal />
+	<CardModal
+		task_title={"Some title"}
+		func={"Some func"}
+		description={"Some desc"}
+	/>
 	<!-- <Card -->
 	<!-- 	task_title="Sample Task" -->
 	<!-- 	description="This is a sample description" -->
