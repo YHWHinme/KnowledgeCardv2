@@ -1,16 +1,43 @@
 <script lang="ts">
+	import { createEventDispatcher } from "svelte";
+
 	export let task_title: string;
 	export let func: string;
+	export let description: string;
+
+	const dispatch = createEventDispatcher();
+
+	function handleClick() {
+		dispatch("details");
+	}
 </script>
 
-<!-- TODO: ENsure you use the custom colours here for text and background -->
-<div class="card text-knlCard-text-markdown w-80 bg-knlCard-background shadow-lg">
-	<div class="card-body bg-knlCard-background text-knlCard-text-markdown rounded-xl p-4">
+<div
+	class="card text-knlCard-text-markdown w-80 bg-knlCard-background shadow-lg rounded-lg hover:shadow-xl hover:shadow-knlCard-glowColor transition-all duration-300 cursor-pointer border-knlCard-border"
+>
+	<div
+		class="card-body bg-app-background text-knlCard-text-markdown rounded-lg p-4"
+	>
 		<!-- Compact title -->
-		<h2 class="card-title text-lg font-semibold text-center mb-2">{task_title}</h2>
+		<h2 class="card-title text-lg font-semibold text-center mb-4 text-knlCard-text-summary">
+			{task_title}
+		</h2>
 
 		<!-- Function display -->
-		<h3 class="font-bold text-sm mb-1">Function:</h3>
-		<pre class="bg-knlCard-background text-knlCard-text-markdown rounded p-2 font-mono text-xs overflow-x-auto">{func}</pre>
+		<h3 class="font-bold text-sm mb-3">Function:</h3>
+		<pre class="bg-app-secondary text-knlCard-text-function rounded-lg p-3 font-mono text-sm overflow-x-auto border border-knlCard-border mb-4">{func}</pre>
+
+		<!-- Description -->
+		<h3 class="font-bold text-sm mb-3">Description:</h3>
+		<div class="px-6 text-knlCard-text-function p-1 bg-knlCard-background rounded-lg">
+			{description}
+		</div>
+
+		<!-- View Button -->
+		<div class="flex justify-center mt-4">
+			<button
+				class="hover:pointer rounded-lg border border-knlCard-border py-2 px-4 hover:bg-knlCard-button hover:scale-105 transition-all duration-200 cursor-pointer text-knlCard-text-markdown"
+				on:click={handleClick}>View Details</button>
+		</div>
 	</div>
 </div>
