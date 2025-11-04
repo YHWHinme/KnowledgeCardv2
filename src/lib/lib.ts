@@ -2,8 +2,8 @@ import Databse from "@tauri-apps/plugin-sql";
 import { createClient } from "@libsql/client";
 
 export const db = createClient({
-  url: Deno.env.get("VITE_TURSO_DATABASE_URl"),
-  authToken: Deno.env.get("VITE_TURSO_AUTHTOKEN"),
+  url: import.meta.env.VITE_TURSO_DATABASE_URl,
+  authToken: import.meta.env.VITE_TURSO_AUTHTOKEN,
 });
 
 // NOTE: Projects based functions
