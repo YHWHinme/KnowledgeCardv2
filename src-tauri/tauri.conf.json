@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "identifier": "com.oj2.knowledgemapper",
   "build": {
-    "beforeDevCommand": "deno task dev",
+    "beforeDevCommand": "doppler run deno task dev",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "deno task build",
     "frontendDist": "../build"
