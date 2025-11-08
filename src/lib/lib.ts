@@ -4,7 +4,7 @@ import { renderToString } from "katex";
 import { createClient } from "@libsql/client";
 
 export const db = createClient({
-  url: import.meta.env.VITE_TURSO_DATABASE_URl,
+  url: import.meta.env.VITE_TURSO_DATABASE_URL,
   authToken: import.meta.env.VITE_TURSO_AUTHTOKEN,
 });
 
@@ -36,7 +36,9 @@ export async function getAllProjects(): Promise<Projects[] | number> {
 
 export async function getProjectById(id: number): Promise<Projects | number> {
   try {
-    const result = await db.execute("SELECT * FROM projects WHERE id = ?", [id]);
+    const result = await db.execute("SELECT * FROM projects WHERE id = ?", [
+      id,
+    ]);
     const projects = (result.rows ?? []) as unknown as Projects[];
     return projects.length > 0 ? projects[0] : 404;
   } catch (err) {
@@ -88,12 +90,12 @@ export async function createBlob(
   description: string,
   isFunction: boolean,
   blobValue: string,
-  projectId: number
+  projectId: number,
 ): Promise<number> {
   try {
     await db.execute(
-      "INSERT INTO blobitems (blobName, description, isFunction, blobValue, projectId) VALUES (?, ?, ?, ?, ?)",
-      [blobName, description, isFunction, blobValue, projectId]
+      "INSERT INTO blobs (blobName, description, isFunction, blobValue, projectId) VALUES (?, ?, ?, ?, ?)",
+      [blobName, description, isFunction, blobValue, projectId],
     );
     return 201;
   } catch (err) {
@@ -104,7 +106,7 @@ export async function createBlob(
 
 export async function getALLBlobs(): Promise<Blobs[] | number> {
   try {
-    const result = await db.execute("SELECT * FROM blobitems");
+    const result = await db.execute("SELECT * FROM blobs");
     return (result.rows ?? []) as unknown as Blobs[];
   } catch (err) {
     console.log(err);
@@ -114,7 +116,7 @@ export async function getALLBlobs(): Promise<Blobs[] | number> {
 
 export async function getBlobById(id: number): Promise<Blobs | number> {
   try {
-    const result = await db.execute("SELECT * FROM blobitems WHERE id = ?", [id]);
+    const result = await db.execute("SELECT * FROM blobs WHERE id = ?", [id]);
     const blobs = (result.rows ?? []) as unknown as Blobs[];
     return blobs.length > 0 ? blobs[0] : 404;
   } catch (err) {
@@ -123,9 +125,13 @@ export async function getBlobById(id: number): Promise<Blobs | number> {
   }
 }
 
-export async function getBlobsByProjectId(projectId: number): Promise<Blobs[] | number> {
+export async function getBlobsByProjectId(
+  projectId: number,
+): Promise<Blobs[] | number> {
   try {
-    const result = await db.execute("SELECT * FROM blobitems WHERE projectId = ?", [projectId]);
+    const result = await db.execute("SELECT * FROM blobs WHERE projectId = ?", [
+      projectId,
+    ]);
     return (result.rows ?? []) as unknown as Blobs[];
   } catch (err) {
     console.log(err);
@@ -138,7 +144,7 @@ export async function renameBlob(
   blobName: string,
 ): Promise<number> {
   try {
-    await db.execute("UPDATE blobitems SET blobName=? WHERE id=?", [
+    await db.execute("UPDATE blobs SET blobName=? WHERE id=?", [
       blobName,
       blobId,
     ]);
@@ -154,12 +160,12 @@ export async function updateBlob(
   blobName: string,
   description: string,
   isFunction: boolean,
-  blobValue: string
+  blobValue: string,
 ): Promise<number> {
   try {
     await db.execute(
-      "UPDATE blobitems SET blobName=?, description=?, isFunction=?, blobValue=? WHERE id=?",
-      [blobName, description, isFunction, blobValue, id]
+      "UPDATE blobs SET blobName=?, description=?, isFunction=?, blobValue=? WHERE id=?",
+      [blobName, description, isFunction, blobValue, id],
     );
     return 200;
   } catch (err) {
@@ -170,7 +176,7 @@ export async function updateBlob(
 
 export async function deleteBlob(id: number): Promise<number> {
   try {
-    await db.execute("DELETE FROM blobitems WHERE id = ?", [id]);
+    await db.execute("DELETE FROM blobs WHERE id = ?", [id]);
     return 200;
   } catch (err) {
     console.log(err);
@@ -186,17 +192,3 @@ export function renderKatex(expression: string) {
   });
   return katex;
 }
-// Schema
-//
-// CREATE TABLE blobItem( //     id INTEGER PRIMARY KEY AUTOINCREMENT,
-//     blobName TEXT NOT NULL,
-//     description TEXT,
-//     isFunction BOOLEAN NOT NULL,
-//     blobValue TEXT NOT NULL,
-//     projectId INTEGER,
-//     CONSTRAINT fk_project_id FOREIGN KEY (projectId) REFERENCES projects(id)
-// );
-//     id INTEGER PRIMARY KEY AUTOINCREMENT,
-//     title TEXT NOT NULL
-// );
-//

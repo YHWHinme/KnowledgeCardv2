@@ -3,5 +3,5 @@
 </script>
 
 <div>
-	<Card task_title={"Some title"} func={"Some function"} />
+	<Card blobName={"Some title"} expression={"Some function"} description={"Some desc"} />
 </div>

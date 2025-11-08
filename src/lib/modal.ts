@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-export interface Task {
+export interface Blob {
   id: number;
   task: string;
   expression: string;
@@ -9,10 +9,10 @@ export interface Task {
 
 export const modalStore = writable({
   isOpen: false,
-  currentTask: null as Task | null,
+  currentTask: null as Blob | null,
 });
 
-export function openModal(task: Task) {
+export function openModal(task: Blob) {
   modalStore.set({
     isOpen: true,
     currentTask: task,
@@ -25,4 +25,3 @@ export function closeModal() {
     currentTask: null,
   });
 }
-

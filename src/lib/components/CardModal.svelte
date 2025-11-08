@@ -91,9 +91,9 @@
 				<h3 class="font-bold text-sm mb-4">Function:</h3>
 				<pre
 					class="bg-modal-inputs-background text-app-text-primary rounded-lg p-3 font-mono text-sm overflow-x-auto border border-modal-modal-outline mb-6 flex items-center">{modalState
-						.currentTask?.func || "No Function"}</pre>
+						.currentTask?.expression || "No Function"}</pre>
 				<!-- Empty distance -->
-				<div class="py-4" />
+				<div class="py-4"></div>
 
 				<!-- The placeholder for the description -->
 				<h3 class="font-bold text-sm mb-4">Description:</h3>

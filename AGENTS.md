@@ -1,7 +1,7 @@
 # Agent Guidelines for KnowledgeMapper
 
 ## Tech Stack
-SvelteKit + Tauri + SQLite
+SvelteKit + Tauri + SQLite + Turso
 
 ## Commands
 - **Dev**: `npm run dev` (frontend) / `npm run tauri dev` (full app)
@@ -11,8 +11,8 @@ SvelteKit + Tauri + SQLite
 - **Tests**: No tests configured yet (run single test: N/A)
 
 ## Code Style
-- **TypeScript**: Strict mode, explicit types, no `any`, ES6 imports, camelCase vars/functions, PascalCase components
-- **Svelte**: script→template→styles, `export let` props with types, Tailwind CSS only, Svelte event dispatcher
+- **TypeScript**: Strict mode, explicit types, no `any`, ES6 imports, camelCase vars/functions, PascalCase components/interfaces
+- **Svelte**: script→template→styles order, `export let` props with types, Tailwind CSS only, Svelte event dispatcher
 - **Rust**: `Result<T,E>` with `?`, snake_case vars, PascalCase structs, serde derive, explicit ownership
 - **Database**: TEXT/INTEGER/BOOLEAN types, CONSTRAINT foreign keys, AUTOINCREMENT IDs, parameterized queries
-- **General**: Single quotes, trailing commas, async/await, try/catch, no console.log, conventional commits
+- **General**: Single quotes, trailing commas, async/await, try/catch, console.error for errors, conventional commits

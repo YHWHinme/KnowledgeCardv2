@@ -7,9 +7,10 @@
 	import "katex/contrib/mhchem";
 	import "katex/dist/katex.min.css";
 	import { renderToString } from "katex";
+	import { goto } from "$app/navigation";
 
 	// Props
-	export let task_title: string;
+	export let blobName: string;
 	export let expression: string;
 	export let description: string;
 
@@ -21,6 +22,10 @@
 	// Handlers
 	function handleClick() {
 		dispatch("details");
+	}
+
+	function handleLogoClick() {
+		goto("/");
 	}
 </script>
 
@@ -34,17 +39,18 @@
 		<h2
 			class="card-title text-lg font-semibold text-center mb-4 text-knlCard-text-summary"
 		>
-			{task_title}
+			{blobName}
 		</h2>
 
 		<!-- Function display -->
+		<!-- TODO: setup the copy icon so it looks good -->
+		<!-- 			<div -->
+		<!-- 				class=" -->
+		<!-- flex justify-end items-end -->
+		<!-- 				">󰆏</div> -->
 		<h3 class="font-bold text-sm mb-3">Function:</h3>
 		<pre
 			class="bg-app-secondary text-knlCard-text-function rounded-lg p-1 font-mono text-sm overflow-x-auto border border-knlCard-border mb-4">
-<!-- TODO: setup the copy icon so it looks good -->			<div
-				class="
-flex justify-end items-end
-				">󰆏</div>
 			
 			{@html formula}
 		</pre>
