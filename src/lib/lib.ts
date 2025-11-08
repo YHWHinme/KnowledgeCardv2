@@ -1,3 +1,5 @@
+//Katex imports
+import { renderToString } from "katex";
 import { createClient } from "@libsql/client";
 
 export const db = createClient({

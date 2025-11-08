@@ -7,12 +7,18 @@
 
 	// Sample data
 	let tasks: Task[] = [
-		{ id: 1, task: "Task 1", func: "Func 1", desc: "Some desc" },
-		{ id: 2, task: "Task 2", func: "Func 2", desc: "Some desc" },
-		{ id: 3, task: "Task 3", func: "Func 3", desc: "Some desc" },
-		{ id: 4, task: "Task 4", func: "Func 4", desc: "Some desc" },
+		{
+			id: 1,
+			task: "Task 1",
+			expression: "E = \\sqrt{5^2+2}",
+			desc: "Some desc",
+		},
+		{ id: 2, task: "Task 2", expression: "Func 2", desc: "Some desc" },
+		{ id: 3, task: "Task 3", expression: "Func 3", desc: "Some desc" },
+		{ id: 4, task: "Task 4", expression: "Func 4", desc: "Some desc" },
 	];
 
+	// TODO: Take care of this function
 	function handleDetails() {}
 
 	$: modalState = $modalStore;
@@ -24,7 +30,7 @@
 		{#each tasks as task}
 			<Card
 				task_title={task.task}
-				func={task.func}
+				expression={task.expression}
 				description={task.desc}
 				on:details={() => openModal(task)}
 			/>

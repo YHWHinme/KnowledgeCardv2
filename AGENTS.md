@@ -11,33 +11,8 @@ SvelteKit + Tauri + SQLite
 - **Tests**: No tests configured yet (run single test: N/A)
 
 ## Code Style
-
-### TypeScript/JavaScript
-- Strict mode enabled, explicit types always, no `any` types
-- Imports: ES6 style, external libs first, then `$lib/`, absolute paths
-- Naming: camelCase vars/functions, PascalCase components/types/interfaces
-- Error handling: try/catch with specific error types, avoid console.log for errors
-- Async: async/await preferred, `Promise<T>` return types
-- Strings: single quotes, trailing commas, consistent indentation
-
-### Svelte
-- Structure: script → template → styles
-- Props: `export let` with explicit types, TypeScript interfaces required
-- Styling: Tailwind CSS only, custom colors from tailwind.config.js
-- Responsive: Tailwind prefixes (sm:, md:, lg:) for mobile-first
-- Events: Svelte event dispatcher, no direct DOM manipulation
-
-### Rust (Tauri)
-- Error handling: `Result<T, E>` with `?` operator, custom error types
-- Naming: snake_case functions/vars, PascalCase structs/enums
-- Serialization: serde with derive macros, camelCase JSON fields
-- Memory: explicit ownership, avoid `unwrap()` in production
-
-### Database
-- Schema: descriptive names, CONSTRAINT foreign keys, AUTOINCREMENT IDs
-- Types: TEXT, INTEGER, BOOLEAN, NOT NULL constraints
-- Queries: parameterized to prevent SQL injection
-
-### General
-- Security: never log sensitive data, validate all inputs, no hardcoded secrets
-- Commits: conventional format (feat:, fix:, docs:, etc.)
+- **TypeScript**: Strict mode, explicit types, no `any`, ES6 imports, camelCase vars/functions, PascalCase components
+- **Svelte**: script→template→styles, `export let` props with types, Tailwind CSS only, Svelte event dispatcher
+- **Rust**: `Result<T,E>` with `?`, snake_case vars, PascalCase structs, serde derive, explicit ownership
+- **Database**: TEXT/INTEGER/BOOLEAN types, CONSTRAINT foreign keys, AUTOINCREMENT IDs, parameterized queries
+- **General**: Single quotes, trailing commas, async/await, try/catch, no console.log, conventional commits
